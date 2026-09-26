@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | CraveRush</title>
+
+    <script>
+        (function() {
+            if (localStorage.getItem('creamySwirlsTheme') === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">CraveRush</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="desserts.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find-us.html">Find Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    <a href="products.html" class="text-dark"><i class="bi bi-search fs-5"></i></a>
+                    <div class="dropdown">
+                        <a href="javascript:void(0)" class="text-dark" id="accountIcon" data-bs-toggle="dropdown">
+                            <i class="bi bi-person fs-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" id="accountMenu"></ul>
+                    </div>
+                    <a href="cart.html" class="text-dark position-relative">
+                        <i class="bi bi-bag fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-4">
+        <div class="container">
+            <a href="javascript:history.back()" class="text-decoration-none text-muted mb-3 d-inline-block"><i class="bi bi-arrow-left me-1"></i> Back</a>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="desserts.html" id="breadcrumb-parent">Desserts</a></li>
+                    <li class="breadcrumb-item active" id="breadcrumb-current" aria-current="page">Cakes</li>
+                </ol>
+            </nav>
+            <h1 class="display-5 fw-bold mb-2" id="page-title">Cakes</h1>
+        </div>
+    </section>
+
+    <section class="pb-4">
+        <div class="container">
+            <div class="row align-items-center g-3">
+                <div class="col-md-6">
+                    <div class="input-group search-wrapper">
+                        <span class="input-group-text bg-white border-0"><i class="bi bi-search"></i></span>
+                        <input type="text" id="product-search" class="form-control border-0 shadow-none" placeholder="Search products...">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex gap-2 justify-content-md-end">
+                        <select class="form-select w-auto" id="sort-select">
+                            <option value="default">Sort by: Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="calories">Calories</option>
+                        </select>
+                        <button class="btn btn-custom" id="compare-btn" onclick="openCompareModal()" disabled>
+                            <i class="bi bi-columns-gap me-1"></i> Compare
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-5 mb-5">
+        <div class="container">
+            <div class="row g-4" id="product-grid"></div>
+        </div>
+    </section>
+
+    <!-- COMPARE MODAL -->
+    <div class="modal fade" id="compareModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h4 class="fw-bold mb-0">Product Comparison</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="compare-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category') || 'all';
+            const parent = urlParams.get('parent') || 'desserts';
+            const searchQuery = urlParams.get('search') || '';
+
+            const pageTitle = document.getElementById('page-title');
+            const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+            const breadcrumbParent = document.getElementById('breadcrumb-parent');
+
+            if (searchQuery) {
+                pageTitle.textContent = `Search: "${searchQuery}"`;
+                breadcrumbCurrent.textContent = 'Search Results';
+                breadcrumbParent.style.display = 'none';
+                currentCategoryProducts = [...products];
+                const filtered = products.filter(p =>
+                    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    p.description.toLowerCase().includes(searchQuery.toLowerCase()));
+                displayProducts(filtered);
+                document.getElementById('product-search').value = searchQuery;
+            } else {
+                pageTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                breadcrumbCurrent.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                breadcrumbParent.textContent = parent.charAt(0).toUpperCase() + parent.slice(1);
+                breadcrumbParent.href = parent + '.html';
+                breadcrumbParent.style.display = '';
+                renderProductList(category);
+            }
+
+            setupProductSearchAndSort();
+        });
+    </script>
+</body>
+</html>

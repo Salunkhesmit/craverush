@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | CraveRush</title>
+
+    <script>
+        (function() {
+            if (localStorage.getItem('creamySwirlsTheme') === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">CraveRush</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="desserts.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find-us.html">Find Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    <a href="products.html" class="text-dark"><i class="bi bi-search fs-5"></i></a>
+                    <div class="dropdown">
+                        <a href="javascript:void(0)" class="text-dark" id="accountIcon" data-bs-toggle="dropdown">
+                            <i class="bi bi-person fs-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" id="accountMenu"></ul>
+                    </div>
+                    <a href="cart.html" class="text-dark position-relative">
+                        <i class="bi bi-bag fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5">
+        <div class="container">
+            <a href="index.html" class="text-decoration-none text-muted mb-3 d-inline-block">
+                <i class="bi bi-arrow-left me-1"></i> Back
+            </a>
+            <h1 class="display-5 fw-bold mb-2">About CraveRush</h1>
+            <p class="lead fw-semibold mb-2">Crave it! Match it! Love it!</p>
+            <p class="lead text-muted mb-5" style="max-width: 720px;">
+                <em>“Your Cravings, Your Choice.”</em> Find, compare &amp; discover desserts by taste, calories &amp; location—and pick the treat that feels just right.
+            </p>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="bi bi-book"></i></div>
+                        <h4 class="fw-bold mb-2">Our Story</h4>
+                        <p class="text-muted small mb-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="bi bi-heart"></i></div>
+                        <h4 class="fw-bold mb-2">Our Philosophy</h4>
+                        <p class="text-muted small mb-0">
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="bi bi-star"></i></div>
+                        <h4 class="fw-bold mb-2">Quality & Ingredients</h4>
+                        <p class="text-muted small mb-0">
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="bi bi-emoji-smile"></i></div>
+                        <h4 class="fw-bold mb-2">Why CraveRush</h4>
+                        <p class="text-muted small mb-0">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                            doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
