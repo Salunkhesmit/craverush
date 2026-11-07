@@ -40,8 +40,6 @@ The project focuses exclusively on frontend functionality and user interface int
 
 ---
 
----
-
 ### 🍨 CraveRush
 
 **Your Cravings, Your Choice.**
